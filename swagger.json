@@ -1,0 +1,312 @@
+{
+    "servers": {
+        "url": "http://tanin.phosagro.picom.su/api/"
+    },
+    "info": {
+        "title": "phosagro API",
+        "version": "0.0.1",
+        "description": "API для бэкэнда проекта 'phosagro'"
+    },
+    "tags": {
+        "name": "Курсы"
+    },
+    "paths": {
+        "/courses": {
+            "/get-all/": {
+                "get": {
+                    "tags": "Курсы",
+                    "operationId": "getAllCourses",
+                    "summary": "Получение списка активных курсов",
+                    "responses": {
+                        "200": {
+                            "description": "Список активных курсов успешно получен, и в нем находится хотя бы один курс",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/ResponseCreateScene"
+                                    }
+                                }
+                            }
+                        },
+                        "404": {
+                            "description": "Ни один курс не найден",
+                            "$ref": "#/components/responses/Error"
+                        },
+                        "500": {
+                            "description": "Непредвиденная ошибка при обработке на сервере",
+                            "$ref": "#/components/responses/Error"
+                        }
+                    }
+                }
+            },
+            "/{id}/": {
+                "get": {
+                    "tags": "Курсы",
+                    "operationId": "getCourseById",
+                    "summary": "Получение подробной информации по курсу",
+                    "responses": {
+                        "200": {
+                            "description": "Курс с таким id найден",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/ResponseGetCourseInfo"
+                                    }
+                                }
+                            }
+                        },
+                        "404": {
+                            "description": "Ни один курс не найден",
+                            "$ref": "#/components/responses/Error"
+                        },
+                        "500": {
+                            "description": "Непредвиденная ошибка при обработке на сервере",
+                            "$ref": "#/components/responses/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ResponseGetAllCourses": {
+                "description": "Тело ответа по получению списка активных курсов",
+                "type": "object",
+                "required": [
+                    "courses"
+                ],
+                "properties": {
+                    "courses": {
+                        "description": "Массив с параметрами по каждому курсу, разбитых в разные объекты",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CourseLite"
+                        },
+                        "example": {
+                            "configs": [
+                                {
+                                    "id": "9",
+                                    "name": "Курс химии",
+                                    "date_start": "22.04.2024 14:14:00",
+                                    "date_end": "25.04.2024 14:14:00",
+                                    "age": "16+",
+                                    "detail_picture": "http:\/\/tanin.phosagro.picom.su\/\/upload\/iblock\/1dd\/hasi2k5423hk4u78ber87h8j0rkgs599.jpg",
+                                    "important": false
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            "ResponseGetCourseInfo": {
+                "description": "Тело ответа с информацией по курсу",
+                "type": "object",
+                "required": [
+                    "courses"
+                ],
+                "properties": {
+                    "course": {
+                        "description": "Объект с подробной информацией по курсу",
+                        "type": "object",
+                        "items": {
+                            "$ref": "#/components/schemas/CourseDetail"
+                        },
+                        "example": {
+                            "course": {
+                                "id": "9",
+                                "name": "Курс химии",
+                                "date_start": "22.04.2024 14:14:00",
+                                "date_end": "25.04.2024 14:14:00",
+                                "age": "16+",
+                                "detail_picture": "http:\/\/tanin.phosagro.picom.su\/\/upload\/iblock\/1dd\/hasi2k5423hk4u78ber87h8j0rkgs599.jpg",
+                                "photos": [
+                                    "http:\/\/tanin.phosagro.picom.su\/\/upload\/iblock\/1dd\/hasi2k5423hk4u78ber87h8j0rkgs599.jpg",
+                                    "http:\/\/tanin.phosagro.picom.su\/\/upload\/iblock\/1dd\/hasi2k5423hk4u78ber87h8j0rkgs599.jpg"
+                                ],
+                                "detail_text": "Какой-то текст"
+                            }
+                        }
+                    }
+                }
+            },
+            "CourseLite": {
+                "description": "Основная информация по курсу для списка",
+                "type": "object",
+                "required": [
+                    "id",
+                    "name",
+                    "date_start",
+                    "date_end",
+                    "age",
+                    "detail_picture",
+                    "important"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "Уникальный идентификатор курса, по которому можно получить подробную о нем информацию",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Название курса",
+                        "type": "string"
+                    },
+                    "date_start": {
+                        "description": "Дата старта проведения курса в формате ДД.ММ.ГГГГ ЧЧ:ММ:СС",
+                        "type": "string"
+                    },
+                    "date_end": {
+                        "description": "Дата завершения курса в формате ДД.ММ.ГГГГ ЧЧ:ММ:СС",
+                        "type": "string"
+                    },
+                    "age": {
+                        "description": "Возрастная категория",
+                        "type": "string",
+                        "example": "16+"
+                    },
+                    "detail_picture": {
+                        "$ref": "#/components/schemas/PhotoLink",
+                        "description": "Ссылка на обложку",
+                        "type": "string"
+                    },
+                    "important": {
+                        "description": "Приоритетность записи",
+                        "type": "boolean",
+                        "example": true
+                    }
+                }
+            },
+            "CourseDetail": {
+                "description": "Подробная информация по курсу",
+                "type": "object",
+                "required": [
+                    "id",
+                    "name",
+                    "date_start",
+                    "date_end",
+                    "age",
+                    "detail_picture",
+                    "photos",
+                    "detail_text"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "Уникальный идентификатор курса, по которому можно получить подробную о нем информацию",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Название курса",
+                        "type": "string"
+                    },
+                    "date_start": {
+                        "description": "Дата старта проведения курса в формате ДД.ММ.ГГГГ ЧЧ:ММ:СС",
+                        "type": "string"
+                    },
+                    "date_end": {
+                        "description": "Дата завершения курса в формате ДД.ММ.ГГГГ ЧЧ:ММ:СС",
+                        "type": "string"
+                    },
+                    "age": {
+                        "description": "Возрастная категория",
+                        "type": "string",
+                        "example": "16+"
+                    },
+                    "detail_picture": {
+                        "$ref": "#/components/schemas/PhotoLink",
+                        "description": "Ссылка на обложку",
+                        "type": "string"
+                    },
+                    "photos": {
+                        "description": "Список картинок, прикрепленных к галереи курса",
+                        "type": "array",
+                        "properties": {
+                            "$ref": "#/components/schemas/PhotoLink"
+                        }
+                    },
+                    "detail_text": {
+                        "description": "Описание курса",
+                        "type": "string"
+                    }
+                }
+            },
+            "PhotoLink": {
+                "description": "Ссылка, по которой доступна картинка",
+                "type": "string",
+                "example": "http://tanin.phosagro.picom.su/upload/iblock/1dd/hasi2k5423hk4u78ber87h8j0rkgs599.jpg"
+            },
+            "RespSuccess": {
+                "description": "Всё хорошо",
+                "type": "object",
+                "required": [
+                    "ok"
+                ],
+                "properties": {
+                    "ok": {
+                        "description": "Запрос корректно обработан",
+                        "type": "object",
+                        "example": "{}"
+                    }
+                }
+            },
+            "Error": {
+                "description": "Детальная информация об ошибке",
+                "type": "object",
+                "required": [
+                    "code"
+                ],
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "description": {
+                            "Код ошибки": [
+                                "`BAD_REQUEST` - Некорректный запрос к серверу",
+                                "`NOT_FOUND` - Страница по текущему адресу не найдена",
+                                "`INTERNAL_SERVER_ERROR` - Внутренняя ошибка сервера"
+                            ]
+                        },
+                        "enum": [
+                            "BAD_REQUEST",
+                            "NOT_FOUND",
+                            "INTERNAL_SERVER_ERROR"
+                        ],
+                        "example": "BAD_REQUEST",
+                        "message": {
+                            "type": "string",
+                            "description": "Описание ошибки"
+                        },
+                        "attribute": {
+                            "type": "string",
+                            "description": "Атрибут, с которым связана ошибка"
+                        }
+                    }
+                }
+            }
+        },
+        "responses": {
+            "Success": {
+                "description": "Запрос успешно выполнен",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/RespSuccess"
+                        }
+                    }
+                }
+            },
+            "Error": {
+                "description": "Ошибка выполнения запроса",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Error"
+                        },
+                        "example": {
+                            "code": "CODE_ERROR",
+                            "message": "Описание ошибки"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

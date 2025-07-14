@@ -1,0 +1,2 @@
+<?php
+$arTemplate = ['NAME' => 'API'];

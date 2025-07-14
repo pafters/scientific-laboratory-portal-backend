@@ -1,0 +1,12 @@
+/.htaccess
+/.htpasswd
+/assets
+/authorized-user.txt
+/bitrix
+/favicon.ico
+/favicon.svg
+/main
+/sitemap*.xml
+/sms.txt
+/upload
+/.vscode/

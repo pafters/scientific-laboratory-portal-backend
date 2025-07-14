@@ -1,0 +1,3596 @@
+{
+    "components": {
+        "schemas": {
+            "ageCategory": {
+                "description": "Возрастная категория.",
+                "properties": {
+                    "age": {
+                        "description": "Минимальный возраст.",
+                        "example": "12",
+                        "type": "integer"
+                    },
+                    "id": {
+                        "description": "Идентификатор.",
+                        "example": "01HWDW8XWMXX1378BN5FN94CYK",
+                        "type": "string"
+                    },
+                    "maximalAge": {
+                        "description": "Максимальный возраст (лет, включительно).",
+                        "example": "21",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "Наименование.",
+                        "example": "от 12",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "age",
+                    "id",
+                    "name"
+                ],
+                "type": "object"
+            },
+            "ageCategoryForVoting": {
+                "description": "Возрастная категория привязанная к голосованию.",
+                "properties": {
+                    "id": {
+                        "description": "Идентификатор.",
+                        "example": "01HWDW8XWMXX1378BN5FN94CYK",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Наименование.",
+                        "example": "от 12",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "type": "object"
+            },
+            "captcha": {
+                "description": "Код с картинки.",
+                "properties": {
+                    "code": {
+                        "description": "Введённый пользователем текст.",
+                        "example": "HF1A",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "Идентификатор для проверки капчи.",
+                        "example": "R799",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "code",
+                    "id"
+                ],
+                "type": "object"
+            },
+            "city": {
+                "description": "Город.",
+                "properties": {
+                    "id": {
+                        "description": "Идентификатор.",
+                        "example": "balakovo",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Наименование.",
+                        "example": "Балаково",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "type": "object"
+            },
+            "datetime": {
+                "description": "Дата и время.",
+                "properties": {
+                    "day": {
+                        "description": "День.",
+                        "maximum": 31,
+                        "minimum": 1,
+                        "type": "integer"
+                    },
+                    "hour": {
+                        "description": "Час.",
+                        "maximum": 23,
+                        "minimum": 0,
+                        "type": "integer"
+                    },
+                    "minute": {
+                        "description": "Минута.",
+                        "maximum": 59,
+                        "minimum": 0,
+                        "type": "integer"
+                    },
+                    "month": {
+                        "description": "Месяц.",
+                        "maximum": 12,
+                        "minimum": 1,
+                        "type": "integer"
+                    },
+                    "second": {
+                        "description": "Секунда.",
+                        "maximum": 59,
+                        "minimum": 0,
+                        "type": "integer"
+                    },
+                    "year": {
+                        "description": "Год.",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "day",
+                    "hour",
+                    "minute",
+                    "month",
+                    "second",
+                    "year"
+                ],
+                "type": "object"
+            },
+            "duration": {
+                "description": "Продолжительность.",
+                "properties": {
+                    "days": {
+                        "description": "Количество дней.",
+                        "minimum": 0,
+                        "type": "integer"
+                    },
+                    "hours": {
+                        "description": "Количество часов.",
+                        "maximum": 23,
+                        "minItems": 0,
+                        "type": "integer"
+                    },
+                    "minutes": {
+                        "description": "Количество минут.",
+                        "maximum": 59,
+                        "minItems": 0,
+                        "type": "integer"
+                    },
+                    "seconds": {
+                        "description": "Количество секунд.",
+                        "maximum": 59,
+                        "minItems": 0,
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "days",
+                    "hours",
+                    "minutes",
+                    "seconds"
+                ],
+                "type": "object"
+            },
+            "event": {
+                "description": "Событие.",
+                "properties": {
+                    "age": {
+                        "type": "string"
+                    },
+                    "bigPicture": {
+                        "type": "string"
+                    },
+                    "city": {
+                        "$ref": "#/components/schemas/city"
+                    },
+                    "endsAt": {
+                        "type": "string"
+                    },
+                    "for": {
+                        "description": "Для кого.",
+                        "example": "школьники, студенты",
+                        "type": "string"
+                    },
+                    "fullText": {
+                        "type": "string"
+                    },
+                    "gallery": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "id": {
+                        "description": "Идентификатор события.",
+                        "example": "01J29E2EFXZ972C70GB1CT7CZM",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Наименование события.",
+                        "example": "Ночь в музее.",
+                        "type": "string"
+                    },
+                    "participatability": {
+                        "description": "Возможность подачи заявки на участие в событии.",
+                        "properties": {
+                            "participatable": {
+                                "description": "Можно ли подать заявку, true - можно, false - нельзя.",
+                                "type": "boolean"
+                            },
+                            "reason": {
+                                "oneOf": [
+                                    {
+                                        "$ref": "#/components/schemas/participatabilityReason"
+                                    },
+                                    {
+                                        "description": "Пользователь не авторизован.",
+                                        "enum": [
+                                            "USER_IS_NOT_AUTHORIZED"
+                                        ],
+                                        "type": "string"
+                                    }
+                                ]
+                            }
+                        },
+                        "required": [
+                            "participatable"
+                        ],
+                        "type": "object"
+                    },
+                    "partner": {
+                        "description": "Какое-то дурацкое поле, не использовать.",
+                        "$ref": "#/components/schemas/partner"
+                    },
+                    "partners": {
+                        "description": "Партнёры события.",
+                        "items": {
+                            "$ref": "#/components/schemas/partner"
+                        },
+                        "type": "array"
+                    },
+                    "points": {
+                        "type": "integer"
+                    },
+                    "shortText": {
+                        "type": "string"
+                    },
+                    "smallPicture": {
+                        "type": "string"
+                    },
+                    "startsAt": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "eventForSelect": {
+                "description": "Событие для выбора из списка.",
+                "properties": {
+                    "id": {
+                        "description": "Идентификатор события.",
+                        "example": "01J29E2EFXZ972C70GB1CT7CZM",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Наименование события.",
+                        "example": "Ночь в музее.",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id"
+                ],
+                "type": "object"
+            },
+            "eventForUser": {
+                "description": "Событие пользователя.",
+                "properties": {
+                    "endsAt": {
+                        "description": "Дата и время окончания проведения события.",
+                        "pattern": "^\\d{2}\\.\\d{2}\\.\\d{4} \\d{2}:\\d{2}:\\d{2}",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "Идентификатор события.",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Название события.",
+                        "type": "string"
+                    },
+                    "shortText": {
+                        "description": "Краткоре описание события.",
+                        "type": "string"
+                    },
+                    "smallPicture": {
+                        "description": "URL маленькой картинки события.",
+                        "type": "string"
+                    },
+                    "startsAt": {
+                        "description": "Дата и время начала проведения события.",
+                        "pattern": "^\\d{2}\\.\\d{2}\\.\\d{4} \\d{2}:\\d{2}:\\d{2}",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name",
+                    "startsAt"
+                ],
+                "type": "object"
+            },
+            "eventForUserSlim": {
+                "description": "Событие пользователя (сокращённый набор полей).",
+                "properties": {
+                    "id": {
+                        "description": "Идентификатор события.",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Название события.",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "type": "object"
+            },
+            "eventForVoting": {
+                "description": "Событие привязанное к голосованию.",
+                "properties": {
+                    "id": {
+                        "description": "Идентификатор события.",
+                        "example": "01J29E2EFXZ972C70GB1CT7CZM",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Наименование события.",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "type": "object"
+            },
+            "files": {
+                "description": "Настройки загружаемых файлов.",
+                "properties": {
+                    "count": {
+                        "description": "Максимальное количество файлов.",
+                        "minimum": 0,
+                        "type": "integer"
+                    },
+                    "types": {
+                        "description": "Допустимые расширения файлов.",
+                        "items": {
+                            "description": "Расширение файла (без точки).",
+                            "example": "jpg",
+                            "type": "string"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "count",
+                    "types"
+                ],
+                "type": "object"
+            },
+            "form": {
+                "description": "Форма для заполнения пользователем.",
+                "properties": {
+                    "fields": {
+                        "description": "Поля формы.",
+                        "items": {
+                            "description": "Поле формы.",
+                            "properties": {
+                                "id": {
+                                    "description": "Идентификатор поля для отправки на сервер.",
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "description": "Текст вопроса.",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "Тип поля.",
+                                    "enum": [
+                                        "checkbox",
+                                        "number",
+                                        "radio",
+                                        "text"
+                                    ],
+                                    "type": "string"
+                                },
+                                "variants": {
+                                    "description": "Варианты ответа для типаов checkbox и radio.",
+                                    "items": {
+                                        "description": "Вариант ответа.",
+                                        "properties": {
+                                            "id": {
+                                                "description": "Идентификатор ответа для отправки на сервер.",
+                                                "type": "string"
+                                            },
+                                            "title": {
+                                                "description": "Текст варианта ответа для показа пользователю.",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "id",
+                                            "title"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "required": [
+                                "id",
+                                "title",
+                                "type"
+                            ],
+                            "type": "object"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "fields"
+                ],
+                "type": "object"
+            },
+            "group": {
+                "description": "Группа пользователей.",
+                "properties": {
+                    "id": {
+                        "description": "Идентификатор.",
+                        "example": "01HWDWA50DJ2BJD9R4DZV938DX",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Наименование.",
+                        "example": "Участники",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "type": "object"
+            },
+            "participatabilityReason": {
+                "description": "Причина недоступности участия. AGE_IS_MISMATCHED - Неподходящий возраст. AGE_IS_NOT_CALCULATED - Не удалось вычислить возраст из даты рождения. EVENT_IS_ARCHIVED - Событие в архиве. EVENT_IS_COMPLETED - Событие завершено. EVENT_IS_NOT_PUBLISHED - Регистрация на событие ещё не началась. EVENT_IS_RUNNING - Регистрация на событие уже закончилась. GROUP_IS_MISMATCHED - Событие недоступно группе пользователя. USER_IS_ALREADY_PARTICIPANT - Пользователь уже участвует в событии. USER_IS_BLOCKED - Пользователь заблокирован. USER_IS_NOT_CONFIRMED_EMAIL - Пользователь не подтвердил адрес электронной почты. USER_IS_NOT_CONFIRMED_PHONE - Пользователь не подтвердил номер телефона. USER_IS_NOT_FILLED_PROFILE - Пользователь не полностью заполнил профиль. USER_IS_NOT_MODERATED - Пользователь ещё не подтверждён модератором. USER_REFUSED_TO_PARTICIPATE - Пользователь отказался от выполнения заданий.",
+                "enum": [
+                    "AGE_IS_MISMATCHED",
+                    "AGE_IS_NOT_CALCULATED",
+                    "EVENT_IS_ARCHIVED",
+                    "EVENT_IS_COMPLETED",
+                    "EVENT_IS_NOT_PUBLISHED",
+                    "EVENT_IS_RUNNING",
+                    "GROUP_IS_MISMATCHED",
+                    "USER_IS_ALREADY_PARTICIPANT",
+                    "USER_IS_BLOCKED",
+                    "USER_IS_NOT_CONFIRMED_EMAIL",
+                    "USER_IS_NOT_CONFIRMED_PHONE",
+                    "USER_IS_NOT_FILLED_PROFILE",
+                    "USER_IS_NOT_MODERATED",
+                    "USER_REFUSED_TO_PARTICIPATE"
+                ],
+                "type": "string"
+            },
+            "partner": {
+                "description": "Партнёр.",
+                "properties": {
+                    "color": {
+                        "description": "Цвет иконки (формат как для css).",
+                        "example": "AB54CC",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "Идентификатор.",
+                        "example": "01HWDWB2A315BDW75ZH5BQWY1H",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Наименование.",
+                        "example": "Суперпартнёр!",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "type": "object"
+            },
+            "phosagroCompany": {
+                "description": "Компания Фосагро.",
+                "properties": {
+                    "id": {
+                        "description": "Идентификатор.",
+                        "example": "01HWDWCE5B5TC3GSAE0Y937XSQ",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Наименование.",
+                        "example": "Суперфосагро!",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "type": "object"
+            },
+            "place": {
+                "description": "Координаты места.",
+                "properties": {
+                    "latitude": {
+                        "description": "Широта.",
+                        "maximum": 90,
+                        "minimum": -90,
+                        "type": "number"
+                    },
+                    "longitude": {
+                        "description": "Долгота.",
+                        "maximum": 180,
+                        "minimum": -180,
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "latitude",
+                    "longitude"
+                ],
+                "type": "object"
+            },
+            "question": {
+                "description": "Обращение пользователя.",
+                "properties": {
+                    "createdAt": {
+                        "description": "Дата и время создания обращения.",
+                        "pattern": "^\\d{2}\\.\\d{2}\\.\\d{4} \\d{2}:\\d{2}:\\d{2}",
+                        "type": "string"
+                    },
+                    "event": {
+                        "$ref": "#/components/schemas/questionEvent"
+                    },
+                    "file": {
+                        "oneOf": [
+                            {
+                                "description": "URL прикреплённого к обращению файла.",
+                                "example": "http://example.org/favicon.ico",
+                                "type": "string"
+                            },
+                            {
+                                "$ref": "#/components/schemas/uploadingFile"
+                            }
+                        ]
+                    },
+                    "id": {
+                        "description": "Идентификатор обращения.",
+                        "example": "01J2K234BPR7N04E5R7WG9EQ23",
+                        "type": "string"
+                    },
+                    "question": {
+                        "description": "Текст вопроса.",
+                        "example": "Как пройти в библиотеку?",
+                        "type": "string"
+                    },
+                    "response": {
+                        "description": "Ответ на вопрос.",
+                        "example": "Иди туда не знаю куда.",
+                        "type": "string"
+                    },
+                    "topic": {
+                        "$ref": "#/components/schemas/questionTopic"
+                    },
+                    "type": {
+                        "$ref": "#/components/schemas/questionType"
+                    },
+                    "url": {
+                        "description": "Ссылка на страницу в обращении.",
+                        "example": "Что хочу то и пишу.",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "question",
+                    "topic",
+                    "type"
+                ],
+                "type": "object"
+            },
+            "questionEvent": {
+                "description": "Событие вопроса.",
+                "properties": {
+                    "id": {
+                        "description": "Идентификатор события.",
+                        "example": "01J29E2EFXZ972C70GB1CT7CZM",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Наименование события.",
+                        "example": "Ночь в музее.",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id"
+                ],
+                "type": "object"
+            },
+            "questionTopic": {
+                "description": "Тема вопроса.",
+                "properties": {
+                    "id": {
+                        "description": "Идентификатор темы вопроса.",
+                        "example": "01J2EN3G03DR2B8W27WRAB9J4T",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Наименование темы вопроса.",
+                        "example": "Что? Где? Когда?",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id"
+                ],
+                "type": "object"
+            },
+            "questionType": {
+                "description": "Тип обращения. CONTENT - Вопрос по сайту. EVENT - Вопрос по событию. TECHNICAL - Сообщение о технической проблеме.",
+                "enum": [
+                    "CONTENT",
+                    "EVENT",
+                    "TECHNICAL"
+                ],
+                "type": "string"
+            },
+            "rating": {
+                "description": "Рейтинг.",
+                "properties": {
+                    "of": {
+                        "description": "Количество участников рейтинга.",
+                        "type": "integer"
+                    },
+                    "place": {
+                        "description": "Место пользователя в рейтинге.",
+                        "type": "integer"
+                    },
+                    "top": {
+                        "description": "Таблица рейтинга.",
+                        "items": {
+                            "description": "Строка таблицы рейтинга.",
+                            "properties": {
+                                "score": {
+                                    "description": "Количество баллов участника.",
+                                    "type": "integer"
+                                },
+                                "name": {
+                                    "description": "Имя участника.",
+                                    "type": "string"
+                                },
+                                "place": {
+                                    "description": "Место участника.",
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "score",
+                                "name",
+                                "place"
+                            ],
+                            "type": "object"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "of",
+                    "place",
+                    "top"
+                ],
+                "type": "object"
+            },
+            "subscriptions": {
+                "description": "Подписки пользователя.",
+                "properties": {
+                    "events_activity": {
+                        "description": "Начало и завершение моих событий.",
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "events_daily": {
+                        "description": "Новые события раз в день.",
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "events_monthly": {
+                        "description": "Новые события раз в месяц.",
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "events_weekly": {
+                        "description": "Новые события раз в неделю.",
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "news_daily": {
+                        "description": "Обновления новостей раз в день.",
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "news_monthly": {
+                        "description": "Обновления новостей раз в месяц.",
+                        "example": false,
+                        "type": "boolean"
+                    },
+                    "news_weekly": {
+                        "description": "Обновления новостей раз в неделю.",
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "tasks": {
+                        "description": "Уведомления о проверке заданий.",
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "votings": {
+                        "description": "Уведомления о новых голосованиях.",
+                        "example": false,
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "events_activity",
+                    "events_daily",
+                    "events_monthly",
+                    "events_weekly",
+                    "news_daily",
+                    "news_monthly",
+                    "news_weekly",
+                    "tasks",
+                    "votings"
+                ],
+                "type": "object"
+            },
+            "task": {
+                "description": "Задание.",
+                "properties": {
+                    "bonus": {
+                        "description": "Баллы за выполнение задания.",
+                        "type": "integer"
+                    },
+                    "duration": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/duration"
+                            },
+                            {
+                                "description": "Продолжительность выполнения задания."
+                            }
+                        ]
+                    },
+                    "ends": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/datetime"
+                            },
+                            {
+                                "description": "Дата окончания задания."
+                            }
+                        ]
+                    },
+                    "files": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/files"
+                            },
+                            {
+                                "description": "Настройки загружаемых файлов для задания «загрузи файл»."
+                            }
+                        ]
+                    },
+                    "form": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/form"
+                            },
+                            {
+                                "description": "Форма для задания «заполни форму»."
+                            }
+                        ]
+                    },
+                    "id": {
+                        "description": "Идентификатор задания.",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Название задания.",
+                        "type": "string"
+                    },
+                    "place": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/place"
+                            },
+                            {
+                                "description": "Координаты места для задания «посети место»."
+                            }
+                        ]
+                    },
+                    "required": {
+                        "description": "Обязательно ли для выполнения.",
+                        "type": "boolean"
+                    },
+                    "starts": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/datetime"
+                            },
+                            {
+                                "description": "Дата начала задания."
+                            }
+                        ]
+                    },
+                    "status": {
+                        "description": "Статус выполнения задания.",
+                        "properties": {
+                            "code": {
+                                "$ref": "#/components/schemas/taskStatusCode"
+                            },
+                            "reason": {
+                                "description": "Причина именно этого статуса. all_good - Можно выполнять. not_a_participant - Пользователь не является участником события. not_completed_previous_required - Не выполнены обязательные предыдущие задания. participant_refused - Участник отказался от выполнения заданий. task_files_is_rejected - Модератор посчитал файлы неправильными. task_form_is_missing - Модератор ошибся в настройке задания. task_form_is_wrong - Не все ответы правильные. task_is_closed - Задание снято с публикации. task_is_completed - Пользователь уже выполнил задание. task_is_ended - Приём ответов по заданию уже завершён. task_is_not_started - Приём ответов по заданию ещё не начался. task_is_on_moderation - Ответ проверяется модератором.",
+                                "enum": [
+                                    "all_good",
+                                    "not_a_participant",
+                                    "not_completed_previous_required",
+                                    "participant_refused",
+                                    "task_files_is_rejected",
+                                    "task_form_is_missing",
+                                    "task_form_is_wrong",
+                                    "task_is_closed",
+                                    "task_is_completed",
+                                    "task_is_ended",
+                                    "task_is_not_started",
+                                    "task_is_on_moderation"
+                                ],
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "code"
+                        ],
+                        "type": "object"
+                    },
+                    "text": {
+                        "description": "Описание задания.",
+                        "type": "string"
+                    },
+                    "type": {
+                        "description": "Тип задания.",
+                        "enum": [
+                            "fill_out_the_form",
+                            "upload_file",
+                            "visit_the_place",
+                            "watch_the_video"
+                        ],
+                        "type": "string"
+                    },
+                    "video": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/video"
+                            },
+                            {
+                                "description": "Видеоролик для задания «посмотри видеоролик»."
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "id",
+                    "name",
+                    "required",
+                    "status",
+                    "type"
+                ],
+                "type": "object"
+            },
+            "taskStatusCode": {
+                "description": "Код статуса. available - Можно выполнять. completed - Успешно выполнено. failed - Выполнено неправильно. moderation - Проверяется модератором. unavailable - Нельзя выполнять.",
+                "enum": [
+                    "available",
+                    "completed",
+                    "failed",
+                    "moderation",
+                    "unavailable"
+                ],
+                "type": "string"
+            },
+            "uploadingFile": {
+                "description": "Загружаемый файл.",
+                "properties": {
+                    "content": {
+                        "description": "Содержимое файла в кодировке base64.",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Имя файла.",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "content",
+                    "name"
+                ],
+                "type": "object"
+            },
+            "user": {
+                "description": "Пользователь.",
+                "properties": {
+                    "agreement": {
+                        "description": "Признак согласия на обработку персональных данных.",
+                        "example": true,
+                        "type": "boolean"
+                    },
+                    "birthday": {
+                        "description": "Дата рождения.",
+                        "example": "2001-01-01",
+                        "format": "date",
+                        "type": "string"
+                    },
+                    "captcha": {
+                        "$ref": "#/components/schemas/captcha"
+                    },
+                    "city": {
+                        "$ref": "#/components/schemas/city"
+                    },
+                    "company": {
+                        "description": "Компания.",
+                        "oneOf": [
+                            {
+                                "properties": {
+                                    "name": {
+                                        "description": "Наименование.",
+                                        "example": "Суперкомпания!",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "name"
+                                ],
+                                "type": "object"
+                            },
+                            {
+                                "properties": {
+                                    "phosagro": {
+                                        "$ref": "#/components/schemas/phosagroCompany"
+                                    }
+                                },
+                                "required": [
+                                    "phosagro"
+                                ],
+                                "type": "object"
+                            }
+                        ]
+                    },
+                    "edu": {
+                        "description": "Учебное заведение.",
+                        "properties": {
+                            "name": {
+                                "description": "Наименование.",
+                                "example": "Супершкола!",
+                                "type": "string"
+                            },
+                            "type": {
+                                "description": "Тип.",
+                                "example": "school",
+                                "enum": [
+                                    "school",
+                                    "suz",
+                                    "vuz"
+                                ],
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "name",
+                            "type"
+                        ],
+                        "type": "object"
+                    },
+                    "email": {
+                        "description": "Адрес электронной почты.",
+                        "example": "user@example.org",
+                        "format": "email",
+                        "type": "string"
+                    },
+                    "gender": {
+                        "description": "Пол.",
+                        "example": "F",
+                        "enum": [
+                            "F",
+                            "M"
+                        ],
+                        "type": "string"
+                    },
+                    "login": {
+                        "description": "Логин.",
+                        "example": "superuser",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Имя.",
+                        "example": "Супер",
+                        "type": "string"
+                    },
+                    "password-confirm": {
+                        "description": "Подтверждение пароля.",
+                        "example": "zgfhczzmiddelweojajk",
+                        "type": "string"
+                    },
+                    "password-old": {
+                        "description": "Старый пароль.",
+                        "example": "zgfhczzmiddelweojajk",
+                        "type": "string"
+                    },
+                    "password": {
+                        "description": "Новый пароль.",
+                        "example": "zgfhczzmiddelweojajk",
+                        "type": "string"
+                    },
+                    "phone": {
+                        "description": "Номер телефона.",
+                        "example": "+79000000000",
+                        "pattern": "\\+79\\d{9}",
+                        "type": "string"
+                    },
+                    "surname": {
+                        "description": "Фамилия.",
+                        "example": "Пупер",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "birthday",
+                    "city",
+                    "email",
+                    "gender",
+                    "login",
+                    "name",
+                    "phone",
+                    "surname"
+                ],
+                "type": "object"
+            },
+            "userEvent": {
+                "description": "Информация о событии.",
+                "properties": {
+                    "event": {
+                        "$ref": "#/components/schemas/eventForUser"
+                    },
+                    "remaining": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/duration"
+                            },
+                            {
+                                "description": "Оставшееся время события в текущем состоянии."
+                            }
+                        ]
+                    },
+                    "score": {
+                        "description": "Баллы за событие.",
+                        "properties": {
+                            "can": {
+                                "description": "Можно получить.",
+                                "minimum": 0,
+                                "type": "integer"
+                            },
+                            "got": {
+                                "description": "Получено.",
+                                "minimum": 0,
+                                "type": "integer"
+                            }
+                        },
+                        "required": [
+                            "can",
+                            "got"
+                        ],
+                        "type": "object"
+                    },
+                    "state": {
+                        "description": "Состояние события.",
+                        "enum": [
+                            "completed",
+                            "preparing",
+                            "running"
+                        ],
+                        "type": "string"
+                    },
+                    "tasks": {
+                        "description": "Состояние выполнения заданий.",
+                        "items": {
+                            "description": "Информация о выполнении задания.",
+                            "properties": {
+                                "status": {
+                                    "description": "Статус выполнения задания.",
+                                    "properties": {
+                                        "code": {
+                                            "$ref": "#/components/schemas/taskStatusCode"
+                                        }
+                                    },
+                                    "required": [
+                                        "code"
+                                    ],
+                                    "type": "object"
+                                }
+                            },
+                            "required": [
+                                "status"
+                            ],
+                            "type": "object"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "event",
+                    "remaining",
+                    "score",
+                    "state",
+                    "tasks"
+                ],
+                "type": "object"
+            },
+            "userEventSlim": {
+                "description": "Информация о событии (сокращённый набор полей).",
+                "properties": {
+                    "event": {
+                        "$ref": "#/components/schemas/eventForUserSlim"
+                    }
+                },
+                "required": [
+                    "event"
+                ],
+                "type": "object"
+            },
+            "video": {
+                "description": "Видеоролик.",
+                "properties": {
+                    "file": {
+                        "description": "URL файла видеоролика.",
+                        "example": "http://example.org/favicon.ico",
+                        "type": "string"
+                    },
+                    "html": {
+                        "description": "Html-код для вставки видеоролика.",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "voting": {
+                "description": "Голосование.",
+                "properties": {
+                    "age": {
+                        "$ref": "#/components/schemas/ageCategoryForVoting"
+                    },
+                    "brief": {
+                        "description": "Краткое описание.",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Описание голосования.",
+                        "type": "string"
+                    },
+                    "ended": {
+                        "description": "Завершено ли голосование, true - завершено, false - активно.",
+                        "type": "boolean"
+                    },
+                    "ends": {
+                        "description": "Дата и время завершения голосования.",
+                        "pattern": "^\\d{2}\\.\\d{2}\\.\\d{4} \\d{2}:\\d{2}:\\d{2}",
+                        "type": "string"
+                    },
+                    "event": {
+                        "$ref": "#/components/schemas/eventForVoting"
+                    },
+                    "id": {
+                        "description": "Идентификатор голосования.",
+                        "example": "01J29E13DJ2JQACNWB8KMFM53Y",
+                        "type": "string"
+                    },
+                    "limit": {
+                        "description": "Количество возможных вариантов для выбора.",
+                        "minimum": 1,
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "Название голосования.",
+                        "type": "string"
+                    },
+                    "picture": {
+                        "description": "URL большой картинки голосования.",
+                        "example": "http://example.org/favicon.ico",
+                        "type": "string"
+                    },
+                    "starts": {
+                        "description": "Дата и время начала голосования.",
+                        "pattern": "^\\d{2}\\.\\d{2}\\.\\d{4} \\d{2}:\\d{2}:\\d{2}",
+                        "type": "string"
+                    },
+                    "thumbnail": {
+                        "description": "URL маленькой картинки голосования.",
+                        "example": "http://example.org/favicon.ico",
+                        "type": "string"
+                    },
+                    "variants": {
+                        "description": "Варианты для голосования.",
+                        "items": {
+                            "$ref": "#/components/schemas/votingVariant"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "age",
+                    "ended",
+                    "ends",
+                    "id",
+                    "limit",
+                    "name",
+                    "starts",
+                    "variants"
+                ],
+                "type": "object"
+            },
+            "votingPreview": {
+                "description": "Голосование для списка.",
+                "properties": {
+                    "brief": {
+                        "description": "Краткое описание.",
+                        "type": "string"
+                    },
+                    "ends": {
+                        "description": "Дата и время завершения голосования.",
+                        "pattern": "^\\d{2}\\.\\d{2}\\.\\d{4} \\d{2}:\\d{2}:\\d{2}",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "Идентификатор голосования.",
+                        "example": "01J29E13DJ2JQACNWB8KMFM53Y",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Название голосования.",
+                        "type": "string"
+                    },
+                    "starts": {
+                        "description": "Дата и время начала голосования.",
+                        "pattern": "^\\d{2}\\.\\d{2}\\.\\d{4} \\d{2}:\\d{2}:\\d{2}",
+                        "type": "string"
+                    },
+                    "thumbnail": {
+                        "description": "URL маленькой картинки голосования.",
+                        "example": "http://example.org/favicon.ico",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "ends",
+                    "id",
+                    "name",
+                    "starts"
+                ],
+                "type": "object"
+            },
+            "votingVariant": {
+                "description": "Вариант в голосовании.",
+                "properties": {
+                    "id": {
+                        "description": "Идентификатор варианта в голосовании.",
+                        "example": "01J29E1V7WE3KCRNQR30ZX3KQ8",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Название варианта в голосовании.",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "type": "object"
+            }
+        }
+    },
+    "info": {
+        "title": "Phosagro API",
+        "version": "0.1"
+    },
+    "openapi": "3.0.0",
+    "paths": {
+        "/api/age-category/find/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ageCategory"
+                                }
+                            }
+                        },
+                        "description": "Найденные возрастные категории."
+                    }
+                },
+                "summary": "Поиск возрастных категорий."
+            }
+        },
+        "/api/captcha/generate/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Ответ сервера.",
+                                    "properties": {
+                                        "data": {
+                                            "description": "Информация о капче.",
+                                            "properties": {
+                                                "id": {
+                                                    "description": "Идентификатор для проверки капчи.",
+                                                    "example": "R799",
+                                                    "type": "string"
+                                                },
+                                                "url": {
+                                                    "description": "Адрес файла-картинки капчи.",
+                                                    "example": "/bitrix/tools/captcha.php?captcha_code=R799",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "id",
+                                                "url"
+                                            ],
+                                            "type": "object"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Успешный ответ."
+                    }
+                },
+                "summary": "Получение капчи."
+            }
+        },
+        "/api/city/find/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/city"
+                                }
+                            }
+                        },
+                        "description": "Найденные города."
+                    }
+                },
+                "summary": "Поиск городов."
+            }
+        },
+        "/api/event/find/": {
+            "get": {
+                "parameters": [
+                    {
+                        "description": "Идентификатор возрастной категории.",
+                        "example": "6+",
+                        "in": "query",
+                        "name": "age",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "В архиве, 1 - старые, 0 или отсутствует - актуальные.",
+                        "example": "1",
+                        "in": "query",
+                        "name": "archived",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Идентификатор города.",
+                        "example": "balakovo",
+                        "in": "query",
+                        "name": "city",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Дата начала периода поиска событий.",
+                        "example": "01.01.0001",
+                        "in": "query",
+                        "name": "findAfter",
+                        "schema": {
+                            "pattern": "^\\d{2}\\.\\d{2}\\.\\d{4}$",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Дата окончания периода поиска событий.",
+                        "example": "31.12.9999",
+                        "in": "query",
+                        "name": "findBefore",
+                        "schema": {
+                            "pattern": "^\\d{2}\\.\\d{2}\\.\\d{4}$",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Ограничение количества результатов. По умолчанию 10.",
+                        "example": "10",
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Номер страницы. По умолчанию 1.",
+                        "example": "1",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "minimum": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Идентификатор партнёра.",
+                        "example": "1",
+                        "in": "query",
+                        "name": "partner",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "ageCategories": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/ageCategory"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "cities": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/city"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "events": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/event"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "groups": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/group"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "partners": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/partner"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Найденные события."
+                    }
+                },
+                "summary": "Поиск событий."
+            }
+        },
+        "/api/event/find-askable/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Ответ сервера.",
+                                    "properties": {
+                                        "data": {
+                                            "description": "Результат запроса.",
+                                            "properties": {
+                                                "events": {
+                                                    "description": "Список событий.",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/eventForSelect"
+                                                    },
+                                                    "type": "array"
+                                                }
+                                            },
+                                            "required": [
+                                                "events"
+                                            ],
+                                            "type": "object"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Успешный ответ."
+                    }
+                },
+                "summary": "Получение событий по которым можно задать вопрос."
+            }
+        },
+        "/api/event/get/{id}/": {
+            "get": {
+                "parameters": [
+                    {
+                        "description": "Идентификатор события.",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/event"
+                                }
+                            }
+                        },
+                        "description": "Найденные события."
+                    }
+                },
+                "summary": "Поиск событий."
+            }
+        },
+        "/api/event/participate/{id}/": {
+            "post": {
+                "parameters": [
+                    {
+                        "description": "Идентификатор события.",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Заявка успешно подана."
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Информация об ошибке.",
+                                    "properties": {
+                                        "data": {
+                                            "description": "Параметры ошибки.",
+                                            "properties": {
+                                                "field": {
+                                                    "description": "Не заполненное поле. BIRTHDATE - Дата рождения. CITY - Город. EMAIL - Адрес электронной почты. LOGIN - Имя на сайте. NAME - Имя. PASSWORD - Пароль. PHONE - Номер телефона. SURNAME - Фамилия.",
+                                                    "enum": [
+                                                        "BIRTHDATE",
+                                                        "CITY",
+                                                        "EMAIL",
+                                                        "LOGIN",
+                                                        "NAME",
+                                                        "PASSWORD",
+                                                        "PHONE",
+                                                        "SURNAME"
+                                                    ],
+                                                    "type": "string"
+                                                },
+                                                "message": {
+                                                    "description": "Сообщения для показа пользователю.",
+                                                    "items": {
+                                                        "description": "Текст ошибки.",
+                                                        "type": "string"
+                                                    },
+                                                    "type": "array"
+                                                },
+                                                "reason": {
+                                                    "$ref": "#/components/schemas/participatabilityReason"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "error": {
+                                            "description": "Код ошибки.",
+                                            "oneOf": [
+                                                {
+                                                    "description": "Участие в событии недоступно.",
+                                                    "example": "not_participatable",
+                                                    "type": "string"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Не выполнены условия подачи заявки."
+                    },
+                    "401": {
+                        "description": "Пользователь не авторизован."
+                    },
+                    "404": {
+                        "description": "Событие не найдено."
+                    }
+                },
+                "summary": "Подача заявки на участие в событии."
+            }
+        },
+        "/api/event/play/{id}/": {
+            "get": {
+                "parameters": [
+                    {
+                        "description": "Идентификатор события.",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Ответ сервера.",
+                                    "properties": {
+                                        "data": {
+                                            "description": "Информация о прохождении события.",
+                                            "properties": {
+                                                "tasks": {
+                                                    "description": "Задания.",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/task"
+                                                    },
+                                                    "type": "array"
+                                                }
+                                            },
+                                            "required": [
+                                                "tasks"
+                                            ],
+                                            "type": "object"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Успешный ответ."
+                    },
+                    "401": {
+                        "description": "Пользователь не авторизован."
+                    },
+                    "403": {
+                        "description": "Пользователь не участник."
+                    },
+                    "404": {
+                        "description": "Событие не найдено."
+                    }
+                },
+                "summary": "Получение списка заданий события."
+            }
+        },
+        "/api/event/refuse/{id}/": {
+            "post": {
+                "parameters": [
+                    {
+                        "description": "Идентификатор события.",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешный отказ от участия в событии."
+                    },
+                    "401": {
+                        "description": "Пользователь не авторизован."
+                    },
+                    "404": {
+                        "description": "Событие не найдено."
+                    }
+                },
+                "summary": "Отказ от участия в событии."
+            }
+        },
+        "/api/faq/find/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Ответ сервера.",
+                                    "properties": {
+                                        "data": {
+                                            "description": "Результат запроса.",
+                                            "properties": {
+                                                "questions": {
+                                                    "description": "Список часто задаваемых вопросов с ответами.",
+                                                    "items": {
+                                                        "description": "Часто задаваемый вопрос и ответ на него.",
+                                                        "properties": {
+                                                            "answer": {
+                                                                "description": "Ответ на часто задаваемый вопрос.",
+                                                                "type": "string"
+                                                            },
+                                                            "question": {
+                                                                "description": "Текст часто задаваемого вопроса.",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "answer",
+                                                            "question"
+                                                        ],
+                                                        "type": "object"
+                                                    },
+                                                    "type": "array"
+                                                }
+                                            },
+                                            "required": [
+                                                "questions"
+                                            ],
+                                            "type": "object"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Успешный ответ."
+                    },
+                    "401": {
+                        "description": "Пользователь не авторизован."
+                    }
+                },
+                "summary": "Получение часто задаваемых вопросов."
+            }
+        },
+        "/api/group/find/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/group"
+                                }
+                            }
+                        },
+                        "description": "Найденные группы."
+                    }
+                },
+                "summary": "Поиск групп."
+            }
+        },
+        "/api/megafon/sms/v1/sms": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "description": "Параметры запроса.",
+                                "properties": {
+                                    "callback_url": {
+                                        "description": "URL страницы получения статуса доставки SMS.",
+                                        "example": "http://example.org/favicon.ico",
+                                        "type": "string"
+                                    },
+                                    "from": {
+                                        "description": "Наименование отправителя.",
+                                        "example": "Фосагро",
+                                        "type": "string"
+                                    },
+                                    "message": {
+                                        "description": "Текст SMS.",
+                                        "example": "Регистрация подтверждена.",
+                                        "type": "string"
+                                    },
+                                    "to": {
+                                        "description": "Номер телефона получателя.",
+                                        "example": "+79000000000",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "description": "Параметры запроса."
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Ответ сервера.",
+                                    "properties": {
+                                        "result": {
+                                            "description": "Результат запроса.",
+                                            "properties": {
+                                                "msg_id": {
+                                                    "description": "Идентификатор SMS.",
+                                                    "example": "01J327G6K3G249GDWKS4K7PJDR",
+                                                    "type": "string"
+                                                },
+                                                "status": {
+                                                    "description": "Ответ.",
+                                                    "properties": {
+                                                        "code": {
+                                                            "description": "Код ответа. 0 - запрос выполнен успешно. Не 0 - произошла ошибка.",
+                                                            "type": "integer"
+                                                        },
+                                                        "description": {
+                                                            "description": "Описание ошибки.",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "code",
+                                                        "description"
+                                                    ],
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "required": [
+                                                "status"
+                                            ],
+                                            "type": "object"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Успешно отправлено."
+                    }
+                },
+                "summary": "Обрабатывает запросы в Мегафон для тестирования кода отправки sms."
+            }
+        },
+        "/api/megafon/update-sms-status/": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "description": "Параметры запроса.",
+                                "properties": {
+                                    "msg_id": {
+                                        "description": "Идентификатор SMS.",
+                                        "example": "01J327G6K3G249GDWKS4K7PJDR",
+                                        "type": "string"
+                                    },
+                                    "receipted_message_id": {
+                                        "description": "Неизвестный параметр Мегафона.",
+                                        "type": "string"
+                                    },
+                                    "short_message": {
+                                        "description": "Неизвестный параметр Мегафона.",
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "description": "Статус доставки SMS. delivered - успешно доставлено. delivery_failed - не удалось доставить.",
+                                        "enum": [
+                                            "delivered",
+                                            "delivery_failed"
+                                        ],
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "description": "Параметры запроса."
+                },
+                "responses": {
+                    "200": {
+                        "description": "Успешный ответ."
+                    }
+                },
+                "summary": "Обновляет статус доставки sms по запросу из Мегафона."
+            }
+        },
+        "/api/partner/find/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/partner"
+                                }
+                            }
+                        },
+                        "description": "Найденные партнёры."
+                    }
+                },
+                "summary": "Поиск партнёров."
+            }
+        },
+        "/api/phosagro-company/find/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/phosagroCompany"
+                                }
+                            }
+                        },
+                        "description": "Найденные компании Фосагро."
+                    }
+                },
+                "summary": "Поиск компаний Фосагро."
+            }
+        },
+        "/api/question-topic/all/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Результат запроса.",
+                                    "properties": {
+                                        "data": {
+                                            "description": "Ответ сервера.",
+                                            "properties": {
+                                                "topics": {
+                                                    "description": "Найденные темы вопросов.",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/questionTopic"
+                                                    },
+                                                    "type": "array"
+                                                }
+                                            },
+                                            "required": [
+                                                "forms"
+                                            ],
+                                            "type": "object"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Успешный ответ."
+                    },
+                    "401": {
+                        "description": "Пользователь не авторизован."
+                    }
+                },
+                "summary": "Получение списка доступных тем вопросов."
+            }
+        },
+        "/api/system/find-web-form/{query}/": {
+            "get": {
+                "parameters": [
+                    {
+                        "description": "Поисковый запрос.",
+                        "example": "моя форма",
+                        "in": "path",
+                        "name": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Результат запроса.",
+                                    "properties": {
+                                        "data": {
+                                            "description": "Ответ сервера.",
+                                            "properties": {
+                                                "forms": {
+                                                    "description": "Найденные веб-формы.",
+                                                    "items": {
+                                                        "description": "Веб-форма.",
+                                                        "properties": {
+                                                            "id": {
+                                                                "description": "Идентификатор веб-формы.",
+                                                                "example": "01HY3DEREX5Q9CANV4NQGWDY9A",
+                                                                "type": "string"
+                                                            },
+                                                            "name": {
+                                                                "description": "Название веб-формы.",
+                                                                "example": "моя форма",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "id",
+                                                            "name"
+                                                        ],
+                                                        "type": "object"
+                                                    },
+                                                    "type": "array"
+                                                }
+                                            },
+                                            "required": [
+                                                "forms"
+                                            ],
+                                            "type": "object"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Успешный поиск."
+                    }
+                },
+                "summary": "Поиск веб-формы"
+            }
+        },
+        "/api/task/complete/{id}/": {
+            "post": {
+                "parameters": [
+                    {
+                        "description": "Идентификатор задания.",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "description": "Параметры запроса.",
+                                "properties": {
+                                    "answers": {
+                                        "additionalProperties": {
+                                            "oneOf": [
+                                                {
+                                                    "description": "Текст ответа.",
+                                                    "type": "string"
+                                                },
+                                                {
+                                                    "description": "Идентификатор выбранного варианта ответа.",
+                                                    "type": "string"
+                                                },
+                                                {
+                                                    "description": "Выбранные варианты ответов.",
+                                                    "items": {
+                                                        "description": "Идентификатор варианта ответа.",
+                                                        "type": "string"
+                                                    },
+                                                    "type": "array"
+                                                }
+                                            ]
+                                        },
+                                        "description": "Ответы для задания «заполни форму».",
+                                        "type": "object"
+                                    },
+                                    "files": {
+                                        "description": "Файлы для задания «загрузи файл».",
+                                        "items": {
+                                            "$ref": "#/components/schemas/uploadingFile"
+                                        },
+                                        "type": "array"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "description": "Параметры запроса."
+                },
+                "responses": {
+                    "200": {
+                        "description": "Задание успешно выполнено."
+                    },
+                    "400": {
+                        "description": "Задание выполнено неверно."
+                    },
+                    "401": {
+                        "description": "Пользователь не авторизован."
+                    },
+                    "403": {
+                        "description": "Пользователь не участник."
+                    },
+                    "404": {
+                        "description": "Задание не найдено."
+                    }
+                },
+                "summary": "Выполнение задания в событии."
+            }
+        },
+        "/api/user/ask/": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/question"
+                            }
+                        }
+                    },
+                    "description": "Параметры запроса."
+                },
+                "responses": {
+                    "200": {
+                        "description": "Успешный ответ."
+                    },
+                    "401": {
+                        "description": "Пользователь не авторизован."
+                    }
+                },
+                "summary": "Задать вопрос."
+            }
+        },
+        "/api/user/authorize/": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "description": "Параметры запроса.",
+                                "properties": {
+                                    "captcha": {
+                                        "$ref": "#/components/schemas/captcha"
+                                    },
+                                    "login": {
+                                        "description": "Логин или адрес электронной почты.",
+                                        "example": "superuser",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Пароль.",
+                                        "example": "zgfhczzmiddelweojajk",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "login",
+                                    "password"
+                                ],
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "description": "Параметры запроса."
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Результат запроса.",
+                                    "properties": {
+                                        "user": {
+                                            "$ref": "#/components/schemas/user"
+                                        }
+                                    },
+                                    "required": [
+                                        "user"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Успешный ответ."
+                    }
+                },
+                "summary": "Авторизация пользователя."
+            }
+        },
+        "/api/user/change-password/": {
+            "post": {
+                "description": "Просим пользователя ввести пароль и подтверждение, отправляем запрос с полями login, password и password-confirm. Если получили ошибку 400 captcha_required, то просим пользователя ввести капчу и затем повторно отправляем запрос но уже с полем captcha. Если получили ошибку 400 code_required, то отправляем запрос /api/user/resend-phone-confirmation/ и просим пользователя ввести код из смс, и затем повторно отправляем запрос но уже с полями code и phone. Поле password-old не используем.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "description": "Запрос.",
+                                "properties": {
+                                    "captcha": {
+                                        "$ref": "#/components/schemas/captcha"
+                                    },
+                                    "code": {
+                                        "description": "Код подтверждения из СМС или email.",
+                                        "example": "",
+                                        "type": "string"
+                                    },
+                                    "login": {
+                                        "description": "Имя на сайте.",
+                                        "example": "superuser",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Новый пароль",
+                                        "example": "zgfhczzmiddelweojajk",
+                                        "type": "string"
+                                    },
+                                    "password-confirm": {
+                                        "description": "Подтверждение пароля",
+                                        "example": "zgfhczzmiddelweojajk",
+                                        "type": "string"
+                                    },
+                                    "password-old": {
+                                        "description": "Старый пароль",
+                                        "example": "",
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "description": "Номер телефона.",
+                                        "example": "+79000000000",
+                                        "pattern": "\\+79\\d{9}",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "login",
+                                    "password",
+                                    "password-confirm"
+                                ],
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "description": "Параметры запроса."
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Результат запроса.",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Успешный ответ."
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Информация об ошибке.",
+                                    "properties": {
+                                        "data": {
+                                            "description": "Параметры ошибки.",
+                                            "type": "object"
+                                        },
+                                        "error": {
+                                            "oneOf": [
+                                                {
+                                                    "description": "Требуется код с картинки.",
+                                                    "example": "captcha_required",
+                                                    "type": "string"
+                                                },
+                                                {
+                                                    "description": "Требуется код из СМС.",
+                                                    "example": "code_required",
+                                                    "type": "string"
+                                                },
+                                                {
+                                                    "description": "Требуется код с картинки.",
+                                                    "example": "wrong_fields",
+                                                    "type": "string"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "error"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Ошибка."
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Информация об ошибке.",
+                                    "properties": {
+                                        "data": {
+                                            "description": "Параметры ошибки.",
+                                            "type": "object"
+                                        },
+                                        "error": {
+                                            "description": "Неизвестная ошибка.",
+                                            "example": "server_error",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "error"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Ошибка."
+                    }
+                },
+                "summary": "Изменение пароля."
+            }
+        },
+        "/api/user/confirm-email/": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "code": {
+                                        "description": "Код подтверждения.",
+                                        "example": "",
+                                        "type": "string"
+                                    },
+                                    "user": {
+                                        "description": "Идентификатор пользователя.",
+                                        "example": "999",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "code",
+                                    "user"
+                                ],
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "description": "Параметры запроса."
+                },
+                "responses": {
+                    "200": {
+                        "description": "Email подтверждён."
+                    }
+                },
+                "summary": "Подтверждение email."
+            }
+        },
+        "/api/user/confirm-phone/": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "code": {
+                                        "description": "Код подтверждения.",
+                                        "example": "",
+                                        "type": "string"
+                                    },
+                                    "login": {
+                                        "description": "Имя на сайте.",
+                                        "example": "superuser",
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "description": "Номер телефона.",
+                                        "example": "+79000000000",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "code",
+                                    "login",
+                                    "phone"
+                                ],
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "description": "Параметры запроса."
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "text/plain": {}
+                        },
+                        "description": "Номер телефона подтверждён."
+                    }
+                },
+                "summary": "Подтверждение номера телефона."
+            }
+        },
+        "/api/user/edit/": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/user"
+                            }
+                        }
+                    },
+                    "description": "Параметры запроса."
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Результат запроса.",
+                                    "properties": {
+                                        "user": {
+                                            "$ref": "#/components/schemas/user"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Успешный ответ."
+                    },
+                    "401": {
+                        "description": "Пользователь не авторизован."
+                    }
+                },
+                "summary": "Редактирование профиля пользователя."
+            }
+        },
+        "/api/user/get-agreement/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Ответ сервера.",
+                                    "properties": {
+                                        "data": {
+                                            "description": "Информация о согласии на обработку персональных данных.",
+                                            "properties": {
+                                                "html": {
+                                                    "description": "Тект согласия на обработку персональных данных.",
+                                                    "example": "Соглашаюсь!",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "html"
+                                            ],
+                                            "type": "object"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Успешный ответ."
+                    }
+                },
+                "summary": "Получение текста согласия на обработку персональных данных."
+            }
+        },
+        "/api/user/get-authorized/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Результат запроса.",
+                                    "properties": {
+                                        "user": {
+                                            "$ref": "#/components/schemas/user"
+                                        }
+                                    },
+                                    "required": [
+                                        "user"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Успешный ответ."
+                    }
+                },
+                "summary": "Получение авторизованного пользователя."
+            }
+        },
+        "/api/user/get-events/": {
+            "get": {
+                "parameters": [
+                    {
+                        "description": "Номер страницы.",
+                        "in": "query",
+                        "name": "page",
+                        "required": false,
+                        "schema": {
+                            "default": 1,
+                            "minimum": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Возвращать сокращённый набор полей при значении 1.",
+                        "in": "query",
+                        "name": "slim",
+                        "required": false,
+                        "schema": {
+                            "default": 0,
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Ответ сервера.",
+                                    "properties": {
+                                        "data": {
+                                            "description": "Результат запроса.",
+                                            "properties": {
+                                                "events": {
+                                                    "description": "События в которых участвует пользователь.",
+                                                    "items": {
+                                                        "oneOf": [
+                                                            {
+                                                                "$ref": "#/components/schemas/userEvent"
+                                                            },
+                                                            {
+                                                                "$ref": "#/components/schemas/userEventSlim"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "type": "array"
+                                                }
+                                            },
+                                            "required": [
+                                                "events"
+                                            ],
+                                            "type": "object"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Успешный ответ."
+                    },
+                    "401": {
+                        "description": "Пользователь не авторизован."
+                    }
+                },
+                "summary": "Получение событий в которых участвует авторизованный пользователь."
+            }
+        },
+        "/api/user/get-question/{id}/": {
+            "get": {
+                "parameters": [
+                    {
+                        "description": "Идентификатор обращения.",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Ответ сервера.",
+                                    "properties": {
+                                        "data": {
+                                            "description": "Результат запроса.",
+                                            "properties": {
+                                                "question": {
+                                                    "$ref": "#/components/schemas/question"
+                                                }
+                                            },
+                                            "required": [
+                                                "questions"
+                                            ],
+                                            "type": "object"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Успешный ответ."
+                    },
+                    "401": {
+                        "description": "Пользователь не авторизован."
+                    },
+                    "404": {
+                        "description": "Обращение не найдено."
+                    }
+                },
+                "summary": "Получение информации по обращению авторизованного пользователя."
+            }
+        },
+        "/api/user/get-questions/": {
+            "get": {
+                "parameters": [
+                    {
+                        "description": "Номер страницы.",
+                        "in": "query",
+                        "name": "page",
+                        "required": false,
+                        "schema": {
+                            "minimum": 1,
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Ответ сервера.",
+                                    "properties": {
+                                        "data": {
+                                            "description": "Результат запроса.",
+                                            "properties": {
+                                                "questions": {
+                                                    "description": "Список обращений пользователя.",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/question"
+                                                    },
+                                                    "type": "array"
+                                                }
+                                            },
+                                            "required": [
+                                                "questions"
+                                            ],
+                                            "type": "object"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Успешный ответ."
+                    },
+                    "401": {
+                        "description": "Пользователь не авторизован."
+                    }
+                },
+                "summary": "Получение списка обращений авторизованного пользователя."
+            }
+        },
+        "/api/user/get-rating/{event}/": {
+            "get": {
+                "parameters": [
+                    {
+                        "description": "Идентификатор события.",
+                        "in": "path",
+                        "name": "event",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Ответ сервера.",
+                                    "properties": {
+                                        "data": {
+                                            "description": "Результат запроса.",
+                                            "properties": {
+                                                "event": {
+                                                    "allOf": [
+                                                        {
+                                                            "$ref": "#/components/schemas/rating"
+                                                        },
+                                                        {
+                                                            "description": "Рейтинг события."
+                                                        }
+                                                    ]
+                                                },
+                                                "month": {
+                                                    "allOf": [
+                                                        {
+                                                            "$ref": "#/components/schemas/rating"
+                                                        },
+                                                        {
+                                                            "description": "Рейтинг за текущий месяц."
+                                                        }
+                                                    ]
+                                                },
+                                                "total": {
+                                                    "allOf": [
+                                                        {
+                                                            "$ref": "#/components/schemas/rating"
+                                                        },
+                                                        {
+                                                            "description": "Рейтинг за всё время."
+                                                        }
+                                                    ]
+                                                },
+                                                "week": {
+                                                    "allOf": [
+                                                        {
+                                                            "$ref": "#/components/schemas/rating"
+                                                        },
+                                                        {
+                                                            "description": "Рейтинг за текущую неделю."
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "event",
+                                                "month",
+                                                "total",
+                                                "week"
+                                            ],
+                                            "type": "object"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Успешный ответ."
+                    },
+                    "401": {
+                        "description": "Пользователь не авторизован."
+                    },
+                    "404": {
+                        "description": "Событие не найдено."
+                    }
+                },
+                "summary": "Получение рейтингов."
+            }
+        },
+        "/api/user/get-score/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Ответ сервера.",
+                                    "properties": {
+                                        "data": {
+                                            "description": "Результат запроса.",
+                                            "properties": {
+                                                "month": {
+                                                    "description": "Количество баллов за текущий месяц.",
+                                                    "type": "integer"
+                                                },
+                                                "total": {
+                                                    "description": "Текущее количество баллов.",
+                                                    "type": "integer"
+                                                },
+                                                "week": {
+                                                    "description": "Количество баллов за текущую неделю.",
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "required": [
+                                                "month",
+                                                "total",
+                                                "week"
+                                            ],
+                                            "type": "object"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Успешный ответ."
+                    },
+                    "401": {
+                        "description": "Пользователь не авторизован."
+                    }
+                },
+                "summary": "Получение баллов авторизованного пользователя."
+            }
+        },
+        "/api/user/get-subscriptions/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Результат запроса.",
+                                    "properties": {
+                                        "user": {
+                                            "$ref": "#/components/schemas/subscriptions"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Успешный ответ."
+                    },
+                    "401": {
+                        "description": "Пользователь не авторизован."
+                    }
+                },
+                "summary": "Получение подписок авторизованного пользователя."
+            }
+        },
+        "/api/user/logout/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Авторизация успешно сброшена."
+                    }
+                },
+                "summary": "Сброс авторизации."
+            }
+        },
+        "/api/user/register/": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/user"
+                            }
+                        }
+                    },
+                    "description": "Параметры запроса."
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Результат запроса.",
+                                    "properties": {
+                                        "user": {
+                                            "$ref": "#/components/schemas/user"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Успешный ответ."
+                    }
+                },
+                "summary": "Регистрация пользователя."
+            }
+        },
+        "/api/user/resend-email-confirmation/": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "description": "Адрес электронной почты.",
+                                        "example": "user@example.org",
+                                        "format": "email",
+                                        "type": "string"
+                                    },
+                                    "login": {
+                                        "description": "Имя на сайте.",
+                                        "example": "superuser",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "login",
+                                    "email"
+                                ],
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "description": "Параметры запроса."
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Пустой объект.",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Код подтверждения отправлен."
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "description": "Адрес электронной почты уже подтверждён.",
+                                            "properties": {
+                                                "error": {
+                                                    "description": "Код ошибки.",
+                                                    "enum": [
+                                                        "already_confirmed"
+                                                    ],
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "error"
+                                            ]
+                                        },
+                                        {
+                                            "description": "Слишком частые запросы кода подтверждения.",
+                                            "properties": {
+                                                "data": {
+                                                    "description": "Информация об ошибке.",
+                                                    "properties": {
+                                                        "wait": {
+                                                            "description": "Время до исчезновения ошибки, в секундах.",
+                                                            "example": 60,
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "wait"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                "error": {
+                                                    "description": "Код ошибки.",
+                                                    "enum": [
+                                                        "already_sent"
+                                                    ],
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "data",
+                                                "error"
+                                            ]
+                                        }
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Не удалось отправить код подтверждения."
+                    }
+                },
+                "summary": "Повторная отправка кода подтверждения адреса электронной почты."
+            }
+        },
+        "/api/user/resend-phone-confirmation/": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "login": {
+                                        "description": "Имя на сайте.",
+                                        "example": "superuser",
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "description": "Номер телефона.",
+                                        "example": "+79000000000",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "login",
+                                    "phone"
+                                ],
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "description": "Параметры запроса."
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "text/plain": {}
+                        },
+                        "description": "Код подтверждения отправлен."
+                    }
+                },
+                "summary": "Повторная отправка кода подтверждения номера телефона."
+            }
+        },
+        "/api/user/send-password-restore-email/": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "captcha": {
+                                        "$ref": "#/components/schemas/captcha"
+                                    },
+                                    "email": {
+                                        "description": "Адрес электронной почты.",
+                                        "example": "user@example.org",
+                                        "format": "email",
+                                        "type": "string"
+                                    },
+                                    "login": {
+                                        "description": "Имя на сайте.",
+                                        "example": "superuser",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "description": "Параметры запроса."
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Результат запроса.",
+                                    "properties": {
+                                        "data": {
+                                            "description": "Ответ сервера.",
+                                            "properties": {
+                                                "login": {
+                                                    "description": "Логин пользователя для смены пароля.",
+                                                    "example": "superuser",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "login"
+                                            ],
+                                            "type": "object"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Ссылка для восстановления пароля отправлена."
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Информация об ошибке.",
+                                    "properties": {
+                                        "data": {
+                                            "description": "Параметры ошибки.",
+                                            "properties": {
+                                                "email": {
+                                                    "description": "Ошибка в поле email.",
+                                                    "properties": {
+                                                        "code": {
+                                                            "description": "Код ошибки.",
+                                                            "oneOf": [
+                                                                {
+                                                                    "description": "Найдено несколько пользователей.",
+                                                                    "example": "duplicate",
+                                                                    "type": "string"
+                                                                },
+                                                                {
+                                                                    "description": "Неверный формат.",
+                                                                    "example": "invalid",
+                                                                    "type": "string"
+                                                                },
+                                                                {
+                                                                    "description": "Не заполнено одно из полей.",
+                                                                    "example": "required_any",
+                                                                    "type": "string"
+                                                                },
+                                                                {
+                                                                    "description": "Email и login от разных пользователей.",
+                                                                    "example": "required_one",
+                                                                    "type": "string"
+                                                                },
+                                                                {
+                                                                    "description": "Не найден пользователь.",
+                                                                    "example": "unexpected",
+                                                                    "type": "string"
+                                                                }
+                                                            ]
+                                                        },
+                                                        "message": {
+                                                            "description": "Тексты ошибок для показа пользователю.",
+                                                            "items": {
+                                                                "description": "Текст ошибки.",
+                                                                "type": "string"
+                                                            },
+                                                            "type": "array"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "code",
+                                                        "message"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                "login": {
+                                                    "description": "Ошибка в поле login.",
+                                                    "properties": {
+                                                        "code": {
+                                                            "description": "Код ошибки.",
+                                                            "oneOf": [
+                                                                {
+                                                                    "description": "Найдено несколько пользователей.",
+                                                                    "example": "duplicate",
+                                                                    "type": "string"
+                                                                },
+                                                                {
+                                                                    "description": "Неверный формат.",
+                                                                    "example": "invalid",
+                                                                    "type": "string"
+                                                                },
+                                                                {
+                                                                    "description": "Не заполнено одно из полей.",
+                                                                    "example": "required_any",
+                                                                    "type": "string"
+                                                                },
+                                                                {
+                                                                    "description": "Email и login от разных пользователей.",
+                                                                    "example": "required_one",
+                                                                    "type": "string"
+                                                                },
+                                                                {
+                                                                    "description": "Не найден пользователь.",
+                                                                    "example": "unexpected",
+                                                                    "type": "string"
+                                                                }
+                                                            ]
+                                                        },
+                                                        "message": {
+                                                            "description": "Тексты ошибок для показа пользователю.",
+                                                            "items": {
+                                                                "description": "Текст ошибки.",
+                                                                "type": "string"
+                                                            },
+                                                            "type": "array"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "code",
+                                                        "message"
+                                                    ],
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "error": {
+                                            "description": "Код ошибки.",
+                                            "oneOf": [
+                                                {
+                                                    "description": "Требуется код с картинки.",
+                                                    "example": "captcha_required",
+                                                    "type": "string"
+                                                },
+                                                {
+                                                    "description": "Неправильно заполнены поля запроса.",
+                                                    "example": "wrong_fields",
+                                                    "type": "string"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "error"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Неверный формат запроса."
+                    }
+                },
+                "summary": "Отправка письма для восстановления пароля."
+            }
+        },
+        "/api/user/set-subscriptions/": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/subscriptions"
+                            }
+                        }
+                    },
+                    "description": "Параметры запроса."
+                },
+                "responses": {
+                    "200": {
+                        "description": "Успешный ответ."
+                    },
+                    "401": {
+                        "description": "Пользователь не авторизован."
+                    }
+                },
+                "summary": "Изменение подписок авторизованного пользователя."
+            }
+        },
+        "/api/voting/get-list/": {
+            "get": {
+                "parameters": [
+                    {
+                        "description": "Номер страницы.",
+                        "in": "query",
+                        "name": "page",
+                        "required": false,
+                        "schema": {
+                            "minimum": 1,
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Результат запроса.",
+                                    "properties": {
+                                        "data": {
+                                            "description": "Ответ сервера.",
+                                            "properties": {
+                                                "votings": {
+                                                    "description": "Голосования.",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/votingPreview"
+                                                    },
+                                                    "type": "array"
+                                                }
+                                            },
+                                            "required": [
+                                                "votings"
+                                            ],
+                                            "type": "object"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Успешный ответ."
+                    },
+                    "401": {
+                        "description": "Пользователь не авторизован."
+                    }
+                },
+                "summary": "Получение списка голосований."
+            }
+        },
+        "/api/voting/get-one/{id}/": {
+            "get": {
+                "parameters": [
+                    {
+                        "description": "Идентификатор голосования.",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Результат запроса.",
+                                    "properties": {
+                                        "data": {
+                                            "description": "Ответ сервера.",
+                                            "properties": {
+                                                "voting": {
+                                                    "$ref": "#/components/schemas/voting"
+                                                }
+                                            },
+                                            "required": [
+                                                "votings"
+                                            ],
+                                            "type": "object"
+                                        }
+                                    },
+                                    "required": [
+                                        "data"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Успешный ответ."
+                    },
+                    "401": {
+                        "description": "Пользователь не авторизован."
+                    },
+                    "404": {
+                        "description": "Голосование не найдено."
+                    }
+                },
+                "summary": "Получение полной информации о голосовании."
+            }
+        },
+        "/api/voting/vote/{id}/": {
+            "post": {
+                "parameters": [
+                    {
+                        "description": "Идентификатор голосования.",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "chosen": {
+                                        "description": "Выбранные варианты.",
+                                        "items": {
+                                            "description": "Идентификатор выбранного варианта.",
+                                            "example": "01J29E1V7WE3KCRNQR30ZX3KQ8",
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "description": "Параметры запроса."
+                },
+                "responses": {
+                    "200": {
+                        "description": "Успешный ответ."
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Информация об ошибке.",
+                                    "properties": {
+                                        "data": {
+                                            "description": "Параметры ошибки.",
+                                            "properties": {
+                                                "chosen": {
+                                                    "description": "Ошибка в поле chosen.",
+                                                    "properties": {
+                                                        "code": {
+                                                            "description": "Код ошибки.",
+                                                            "oneOf": [
+                                                                {
+                                                                    "description": "Вариант выбран несколько раз.",
+                                                                    "example": "duplicate",
+                                                                    "type": "string"
+                                                                },
+                                                                {
+                                                                    "description": "Выбрано слишком много вариантов.",
+                                                                    "example": "exceeded",
+                                                                    "type": "string"
+                                                                },
+                                                                {
+                                                                    "description": "Неверный формат запроса.",
+                                                                    "example": "invalid",
+                                                                    "type": "string"
+                                                                },
+                                                                {
+                                                                    "description": "Не выбран ни один вариант.",
+                                                                    "example": "required",
+                                                                    "type": "string"
+                                                                },
+                                                                {
+                                                                    "description": "Неверный идентификатор варианта.",
+                                                                    "example": "unexpected",
+                                                                    "type": "string"
+                                                                }
+                                                            ]
+                                                        },
+                                                        "message": {
+                                                            "description": "Тексты ошибок для показа пользователю.",
+                                                            "items": {
+                                                                "description": "Текст ошибки.",
+                                                                "type": "string"
+                                                            },
+                                                            "type": "array"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "code",
+                                                        "message"
+                                                    ],
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "error": {
+                                            "description": "Код ошибки.",
+                                            "oneOf": [
+                                                {
+                                                    "description": "Неправильно заполнены поля запроса.",
+                                                    "example": "wrong_fields",
+                                                    "type": "string"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "required": [
+                                        "error"
+                                    ],
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "description": "Неверный формат запроса."
+                    },
+                    "401": {
+                        "description": "Пользователь не авторизован."
+                    },
+                    "404": {
+                        "description": "Голосование не найдено."
+                    }
+                },
+                "summary": "Отправка голоса в голосовании."
+            }
+        }
+    },
+    "servers": [
+        {
+            "description": "Сайт для тестирования",
+            "url": "https://phosagro.picom.su"
+        },
+        {
+            "description": "Сайт для показа заказчику",
+            "url": "https://preprod.phosagro.picom.su"
+        },
+        {
+            "description": "Сайт для разработчика",
+            "url": "https://tanin.phosagro.picom.su"
+        },
+        {
+            "description": "Локальный сайт",
+            "url": "https://test.local"
+        }
+    ]
+}
